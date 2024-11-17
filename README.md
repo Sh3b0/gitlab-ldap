@@ -2,7 +2,7 @@
 
 Configuring local GitLab server with LDAPS authentication and Grafana dashboards.
 
-- Check [Report.md](./Report.md) for more details
+- Check [REPORT.md](./REPORT.md) for more details
 
 ## Overview
 

@@ -266,38 +266,6 @@
   127.0.0.1       gitlab.internal.test
   ```
 
-## Results
-
-### LLDAP
-
-- Admin interface showing user entries
-
-  ![image-20241117194308051](/home/ahmed/.config/Typora/typora-user-images/image-20241117194308051.png)
-
-### GitLab
-
-- LDAP login option supported and website is accessed over HTTPS.
-
-  ![image-20241117194414093](https://i.postimg.cc/C17mh5f7/image.png)
-
-- Successful LDAP authentication with user `ahmed`
-
-  ![image-20241117194535118](https://i.postimg.cc/Y0S8h76H/image.png)
-
-### Grafana
-
-- Provisioned datasource for connection to GitLab
-
-  ![image-20241117194829584](https://i.postimg.cc/v8P3C1yH/image.png)
-
-- List of provisioned dashboards
-
-  ![image-20241117194750248](https://i.postimg.cc/tCY2bXRd/image.png)
-
-- GitLab Redis monitoring dashboard
-
-  ![image-20241117201050294](https://i.postimg.cc/7Zz9Cm2f/image.png)
-
 ## Discussion (areas of improvement)
 
 - **Secret management**
