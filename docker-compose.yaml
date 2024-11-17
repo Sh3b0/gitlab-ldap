@@ -1,0 +1,54 @@
+name: gitlab-ldap
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    # ports:
+    #   - "80:80" # Web
+    volumes:
+      - ./conf/gitlab.rb:/etc/gitlab/gitlab.rb
+      - gitlab_data:/var/opt/gitlab
+    depends_on:
+      - lldap
+    restart: unless-stopped
+
+  lldap:
+    image: lldap/lldap:stable
+    container_name: lldap
+    # ports:
+    #   - "3890:3890"   # LDAP
+    #   - "6360:6360"   # LDAPS
+    #   - "17170:17170" # Web
+    volumes:
+      - "lldap_data:/data"
+      - "./certs:/certs"
+    environment:
+      - TZ=Europe/Moscow
+      - LLDAP_JWT_SECRET='${LLDAP_JWT_SECRET}'
+      - LLDAP_KEY_SEED='${LLDAP_KEY_SEED}'
+      - LLDAP_LDAP_BASE_DN=dc=example,dc=com
+      - LLDAP_LDAPS_OPTIONS__ENABLED=true
+      - LLDAP_LDAPS_OPTIONS__CERT_FILE=/certs/tls.crt
+      - LLDAP_LDAPS_OPTIONS__KEY_FILE=/certs/tls.key
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - ./provisioning:/etc/grafana/provisioning
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    ports:
+      - "80:80"
+      - "443:443"
+
+volumes:
+  gitlab_data:
+  lldap_data:

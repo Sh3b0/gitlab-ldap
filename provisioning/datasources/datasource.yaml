@@ -1,0 +1,9 @@
+# https://grafana.com/docs/grafana/latest/datasources/prometheus/#provisioning-example
+---
+apiVersion: 1
+
+datasources:
+  - name: GitLab Omnibus
+    type: prometheus
+    access: proxy
+    url: http://gitlab:9090

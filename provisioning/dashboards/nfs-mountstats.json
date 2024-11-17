@@ -1,0 +1,1267 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "node_exporter NFS mountstats",
+  "editable": true,
+  "gnetId": 8862,
+  "graphTooltip": 0,
+  "id": 733,
+  "iteration": 1561032288147,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [],
+      "title": "GitLab Docs",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://docs.gitlab.com/"
+    }
+  ],
+  "panels": [
+    {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 274,
+      "title": "Overview",
+      "type": "row"
+    },
+    {
+      "aliasColors": {
+        "receive_packets_eth0": "#7EB26D",
+        "receive_packets_lo": "#E24D42",
+        "transmit_packets_eth0": "#7EB26D",
+        "transmit_packets_lo": "#E24D42"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "GitLab Omnibus",
+      "fill": 4,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 248,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Sent.*/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(node_mountstats_nfs_operations_received_bytes_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "interval": "30s",
+          "intervalFactor": 2,
+          "legendFormat": "Received - {{export}}",
+          "refId": "O",
+          "step": 240
+        },
+        {
+          "expr": "sum(rate(node_mountstats_nfs_operations_sent_bytes_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "interval": "30s",
+          "intervalFactor": 2,
+          "legendFormat": "Sent - {{export}}",
+          "refId": "A",
+          "step": 240
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Receive/Send Total",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": "Bytes recieved(-) / send(+)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "receive_packets_eth0": "#7EB26D",
+        "receive_packets_lo": "#E24D42",
+        "transmit_packets_eth0": "#7EB26D",
+        "transmit_packets_lo": "#E24D42"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "GitLab Omnibus",
+      "fill": 4,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 269,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(node_mountstats_nfs_operations_queue_time_seconds_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)\n/\nsum(rate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "instant": false,
+          "interval": "30s",
+          "intervalFactor": 2,
+          "legendFormat": "{{export}} ",
+          "refId": "O",
+          "step": 240
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average Queue Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": "Response time",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "receive_packets_eth0": "#7EB26D",
+        "receive_packets_lo": "#E24D42",
+        "transmit_packets_eth0": "#7EB26D",
+        "transmit_packets_lo": "#E24D42"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "GitLab Omnibus",
+      "fill": 4,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "id": 267,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "instant": false,
+          "interval": "30s",
+          "intervalFactor": 2,
+          "legendFormat": "Requests - {{export}}",
+          "refId": "O",
+          "step": 240
+        },
+        {
+          "expr": "sum(rate(node_mountstats_nfs_operations_transmissions_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "interval": "30s",
+          "intervalFactor": 1,
+          "legendFormat": "Transmissions - {{export}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(node_mountstats_nfs_major_timeouts_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "interval": "30s",
+          "intervalFactor": 1,
+          "legendFormat": "Major timeouts - {{export}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Requests Total",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": "Requests",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "receive_packets_eth0": "#7EB26D",
+        "receive_packets_lo": "#E24D42",
+        "transmit_packets_eth0": "#7EB26D",
+        "transmit_packets_lo": "#E24D42"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "GitLab Omnibus",
+      "fill": 4,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 278,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(rate(node_mountstats_nfs_operations_response_time_seconds_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)\n/\nsum(rate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "instant": false,
+          "interval": "30s",
+          "intervalFactor": 2,
+          "legendFormat": "Response time - {{export}}",
+          "refId": "O",
+          "step": 240
+        },
+        {
+          "expr": "sum(rate(node_mountstats_nfs_operations_request_time_seconds_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)\n/\nsum(rate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\",export=\"$export\"}[$__interval])) by (export)",
+          "format": "time_series",
+          "instant": false,
+          "interval": "30s",
+          "intervalFactor": 2,
+          "legendFormat": "Request time - {{export}}",
+          "refId": "A",
+          "step": 240
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Average Response/Request Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": "Response time",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 260,
+      "panels": [
+        {
+          "aliasColors": {
+            "receive_packets_eth0": "#7EB26D",
+            "receive_packets_lo": "#E24D42",
+            "transmit_packets_eth0": "#7EB26D",
+            "transmit_packets_lo": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GitLab Omnibus",
+          "fill": 4,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 22
+          },
+          "id": 275,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "/Sent.*/",
+              "transform": "negative-Y"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(node_mountstats_nfs_operations_received_bytes_total{instance=\"$instance\",export=\"$export\"}[$__interval])",
+              "format": "time_series",
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "Received - {{operation}}",
+              "refId": "O",
+              "step": 240
+            },
+            {
+              "expr": "rate(node_mountstats_nfs_operations_sent_bytes_total{instance=\"$instance\",export=\"$export\"}[$__interval])",
+              "format": "time_series",
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "Sent - {{operation}}",
+              "refId": "A",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive/Send",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "Bps",
+              "label": "Bytes recieved(-) / send(+)",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "receive_packets_eth0": "#7EB26D",
+            "receive_packets_lo": "#E24D42",
+            "transmit_packets_eth0": "#7EB26D",
+            "transmit_packets_lo": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GitLab Omnibus",
+          "fill": 4,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "id": 276,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\"}[$__interval])",
+              "format": "time_series",
+              "instant": false,
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "{{operation}}",
+              "refId": "O",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Requests",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "reqps",
+              "label": "Requests",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "receive_packets_eth0": "#7EB26D",
+            "receive_packets_lo": "#E24D42",
+            "transmit_packets_eth0": "#7EB26D",
+            "transmit_packets_lo": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GitLab Omnibus",
+          "fill": 4,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 42
+          },
+          "id": 277,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(node_mountstats_nfs_operations_response_time_seconds_total{instance=\"$instance\",export=\"$export\"}[$__interval])\n/\nrate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\",export=\"$export\"}[$__interval]) > 0",
+              "format": "time_series",
+              "instant": false,
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "{{operation}}",
+              "refId": "O",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Response time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": "Response time",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "receive_packets_eth0": "#7EB26D",
+            "receive_packets_lo": "#E24D42",
+            "transmit_packets_eth0": "#7EB26D",
+            "transmit_packets_lo": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GitLab Omnibus",
+          "fill": 4,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 53
+          },
+          "id": 268,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(node_mountstats_nfs_operations_request_time_seconds_total{instance=\"$instance\",export=\"$export\"}[$__interval])\n/\nrate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\",export=\"$export\"}[$__interval]) > 0",
+              "format": "time_series",
+              "instant": false,
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "{{operation}}",
+              "refId": "O",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Requests time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": "Request time",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "receive_packets_eth0": "#7EB26D",
+            "receive_packets_lo": "#E24D42",
+            "transmit_packets_eth0": "#7EB26D",
+            "transmit_packets_lo": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GitLab Omnibus",
+          "fill": 4,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 63
+          },
+          "id": 270,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(node_mountstats_nfs_operations_transmissions_total{instance=\"$instance\",export=\"$export\"}[$__interval])",
+              "format": "time_series",
+              "instant": false,
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "{{operation}}",
+              "refId": "O",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Transmissions",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": "Transmissions",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "receive_packets_eth0": "#7EB26D",
+            "receive_packets_lo": "#E24D42",
+            "transmit_packets_eth0": "#7EB26D",
+            "transmit_packets_lo": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GitLab Omnibus",
+          "fill": 4,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 73
+          },
+          "id": 271,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(node_mountstats_nfs_operations_queue_time_seconds_total{instance=\"$instance\",export=\"$export\"}[$__interval])\n/\nrate(node_mountstats_nfs_operations_requests_total{instance=\"$instance\",export=\"$export\"}[$__interval]) > 0",
+              "format": "time_series",
+              "instant": false,
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "{{operation}}",
+              "refId": "O",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Queue time",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": "Queue time",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "receive_packets_eth0": "#7EB26D",
+            "receive_packets_lo": "#E24D42",
+            "transmit_packets_eth0": "#7EB26D",
+            "transmit_packets_lo": "#E24D42"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GitLab Omnibus",
+          "fill": 4,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 83
+          },
+          "id": 272,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(node_mountstats_nfs_operations_major_timeouts_total{instance=\"$instance\",export=\"$export\"}[$__interval])",
+              "format": "time_series",
+              "instant": false,
+              "interval": "30s",
+              "intervalFactor": 2,
+              "legendFormat": "{{operation}}",
+              "refId": "O",
+              "step": 240
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Major timeouts",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": "Major timeouts",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "repeat": null,
+      "title": "Details",
+      "type": "row"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "localhost:9100",
+          "value": "localhost:9100"
+        },
+        "datasource": "GitLab Omnibus",
+        "definition": "label_values(node_mountstats_nfs_age_seconds_total, instance)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "",
+        "multi": false,
+        "name": "instance",
+        "options": [],
+        "query": "label_values(node_mountstats_nfs_age_seconds_total, instance)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "example:/var/opt/gitlab/gitlab-rails",
+          "value": [
+            "example:/var/opt/gitlab/gitlab-rails"
+          ]
+        },
+        "datasource": "GitLab Omnibus",
+        "definition": "label_values(node_mountstats_nfs_age_seconds_total{instance=\"$instance\"}, export)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "",
+        "multi": false,
+        "name": "export",
+        "options": [],
+        "query": "label_values(node_mountstats_nfs_age_seconds_total{instance=\"$instance\"}, export)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "GitLab Omnibus - NFS mountstats",
+  "uid": "keQ9P_-iz",
+  "version": 13
+}
