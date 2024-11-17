@@ -165,7 +165,7 @@
 
 - Run `gitlab-ctl reconfigure` to apply changes and `gitlab-rake gitlab:ldap:check` to check LDAPS connectivity:
 
-  ![image-20241117191228786](/home/ahmed/.config/Typora/typora-user-images/image-20241117191228786.png)
+  ![image](https://i.postimg.cc/j22fNQMW/image.png)
 
 #### 4. Grafana
 
